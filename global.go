@@ -280,9 +280,9 @@ func (g *globalStatus) finishIteration(status Status, err error, loc *Location, 
 }
 
 // globalOperation executes the requested operation at the given location.
-// Modifications to this function must keep in mind that it can be called
-// concurrently. Uses of the internal fields should be through the methods
-// of globalStatus and protected by a mux where appropriate.
+// When modifying this function, keep in mind that it can be called concurrently.
+// Uses of the internal fields should be through the methods of globalStatus and
+// protected by a mux where appropriate.
 func (g *globalStatus) globalOperation(op Operation, loc *Location, x []float64) Status {
 	// Do a quick check to see if one of the other workers converged in the meantime.
 	status := g.getStatus()
